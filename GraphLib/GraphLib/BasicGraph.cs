@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GraphLib
 {
-    class BasicGraph : IGraph
-    {
-    }
+    //class BasicGraph : IGraph
+    //{
+    //}
 }
