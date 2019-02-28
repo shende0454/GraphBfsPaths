@@ -8,39 +8,39 @@ namespace GraphTests
     [TestClass]
     public class GraphTests
     {
-        [TestMethod]
-        public void createGraph()
-        {
-            BasicGraph myGraph = new BasicGraph(2);
-            myGraph.AddEdge(0, 1);
-            foreach (var vertex in myGraph.GetAdjacentVertices(1))
-            {
-                Assert.AreEqual(0, vertex);
-            }
-        }
+        //[TestMethod]
+        //public void createGraph()
+        //{
+        //    BasicGraph myGraph = new BasicGraph(2);
+        //    myGraph.AddEdge(0, 1);
+        //    foreach (var vertex in myGraph.GetAdjacentVertices(1))
+        //    {
+        //        Assert.AreEqual(0, vertex);
+        //    }
+        //}
 
-        [TestMethod]
-        public void createEmptyGraph()
-        {
-            BasicGraph myGraph = new BasicGraph();
-            myGraph.AddEdge(0, 1);
-            foreach (var vertex in myGraph.GetAdjacentVertices(1))
-            {
-                Assert.AreEqual(0, vertex);
-            }
-        }
+        //[TestMethod]
+        //public void createEmptyGraph()
+        //{
+        //    BasicGraph myGraph = new BasicGraph();
+        //    myGraph.AddEdge(0, 1);
+        //    foreach (var vertex in myGraph.GetAdjacentVertices(1))
+        //    {
+        //        Assert.AreEqual(0, vertex);
+        //    }
+        //}
 
-        [TestMethod]
-        public void createSymbolGraph()
-        {
-            SymbolGraph myGraph = new SymbolGraph();
-            myGraph.AddEdge("a", "b");
-            foreach (var vertex in
-                myGraph.GetAdjacentVertices(myGraph.KeyToVertexId["a"]))
-            {
-                Assert.AreEqual("b", myGraph.VertexIdToKey[vertex]);
-            }
-        }
+        //[TestMethod]
+        //public void createSymbolGraph()
+        //{
+        //    SymbolGraph myGraph = new SymbolGraph();
+        //    myGraph.AddEdge("a", "b");
+        //    foreach (var vertex in
+        //        myGraph.GetAdjacentVertices(myGraph.KeyToVertexId["a"]))
+        //    {
+        //        Assert.AreEqual("b", myGraph.VertexIdToKey[vertex]);
+        //    }
+        //}
 
         //    Move oneEntry.txt to the bin/Debug of the test project.
         //    [TestMethod]
