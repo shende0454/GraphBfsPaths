@@ -141,7 +141,7 @@ namespace GraphLib
 
             if (VertexIdToKey.ContainsKey(secondVertex) == false)
             {
-                AddNode(secondVertex.ToString());
+                AddNode(secondVertex);
             }
             int firstId = KeyToVertexId[firstVertex.ToString()];
             int secondId = KeyToVertexId[secondVertex.ToString()];
@@ -163,14 +163,14 @@ namespace GraphLib
             int id = KeyToVertexId.Count;
             KeyToVertexId.Add(key, id);
             VertexIdToKey.Add(id, key);
-
+            NVertices++;
         }
         public void AddNode(int key)
         {
-            int id = VertexIdToKey.Count;
+            string id = VertexIdToKey.Values;
             KeyToVertexId.Add(key, id);
             VertexIdToKey.Add(id, key);
-
+            NVertices++;
         }
         public bool Contains(string key)
         {
