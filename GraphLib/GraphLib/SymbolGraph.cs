@@ -137,14 +137,13 @@ namespace GraphLib
             {
                 AddNode(firstVertex);
             }
-
-
+           
             if (VertexIdToKey.ContainsKey(secondVertex) == false)
             {
                 AddNode(secondVertex);
             }
-            int firstId = KeyToVertexId[firstVertex.ToString()];
-            int secondId = KeyToVertexId[secondVertex.ToString()];
+            int firstId = KeyToVertexId[this[firstVertex]];
+            int secondId =KeyToVertexId[this[secondVertex]];
             MakeVertex(firstId);
             MakeVertex(secondId);
             if (_adjacencyList[firstId].Contains(secondId) == false)
@@ -167,9 +166,11 @@ namespace GraphLib
         }
         public void AddNode(int key)
         {
-            string id = VertexIdToKey.Values;
-            KeyToVertexId.Add(key, id);
-            VertexIdToKey.Add(id, key);
+            //string id = VertexIdToKey;
+           // KeyToVertexId.Add(key, id);
+            //VertexIdToKey.Add(id, key);
+          //  KeyToVertexId.Add(id, key);
+           // VertexIdToKey.Add(key, id);
             NVertices++;
         }
         public bool Contains(string key)

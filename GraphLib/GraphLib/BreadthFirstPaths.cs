@@ -8,54 +8,59 @@ namespace GraphLib
 {
     public class BreadthFirstPaths
     {
-        private bool[] marked; // Is a shortest path to this vertex known?
-        private int[] edgeTo; // last vertex on known path to this vertex
-        private int s; // source
+        private bool[] isMarked; //shortest path 
+        private int[] edgeToVertex; // last vertex to vertex
+        private int source; // source
         public BreadthFirstPaths(IGraph graph, int source)
         {
-            marked = new bool[graph.NVertices];
-            edgeTo = new int[graph.NVertices];
-            this.s = source;
-            bfs(graph, s);
+            isMarked = new bool[graph.NVertices];
+            edgeToVertex = new int[graph.NVertices];
+            this.source = source;
+            bfs(graph, source);
         }
-        public void bfs(IGraph graph, int s)
+        public void bfs(IGraph graph, int source)
         {
-
-            {
-                Queue<int> queue = new Queue<int>();
-                marked[s] = true; // Mark the source
-                queue.Enqueue(s); // and put it on the queue.
-                while (queue.Count() != 0)
+                Queue<int> q = new Queue<int>();
+                isMarked[source] = true; // Mark the source vertex so it will be known
+                q.Enqueue(source); // add to queue
+                while (q.Count() != 0)
                 {
-                    int v = queue.Dequeue(); // Remove next vertex from the queue.
-                    foreach (int w in graph.GetAdjacentVertices(v))
-                        if (!marked[w]) // For every unmarked adjacent vertex,
+                    int v = q.Dequeue(); //take out the next vertex out of queue
+                    foreach (int w in graph.GetAdjacentVertices(v)) //look through adjaccent vertices
+                        if (!isMarked[w]) // For all the uunmarked adjacen vertices
                         {
-                            edgeTo[w] = v; // save last edge on a shortest path,
-                            marked[w] = true; // mark it because path is known,
-                            queue.Enqueue(w); // and add it to the queue.
+                            edgeToVertex[w] = v; // keep track of edge
+                            isMarked[w] = true; // mark the vertex
+                            q.Enqueue(w); // add to q
                         }
-                }
+                }   
+        }
+
+        private void validateVertex(int vertex)
+        {
+            int theVertex = isMarked.Length;
+            if (vertex < 0 || vertex >= theVertex)
+            {
+                throw new Exception("vertex " + vertex + " is not between 0 and " + (theVertex - 1));
             }
         }
-        private void validateVertex(int v)
-        {
-            int V = marked.Length;
-            if (v < 0 || v >= V)
-                throw new Exception("vertex " + v + " is not between 0 and " + (V - 1));
-        }
-        public bool hasPathTo(int v)
+        public bool hasPathTo(int vertex)
         { 
-            return marked[v]; 
+            return isMarked[vertex]; 
         }
-        public IEnumerable<int> PathTo(int v)
+        public IEnumerable<int> PathTo(int vertex)
         {
-            if (!hasPathTo(v)) return null;
-            Stack<int> path = new Stack<int>();
-            for (int x = v; x != s; x = edgeTo[x])
-                path.Push(x);
-            path.Push(s);
-            return path;
+            if (!hasPathTo(vertex))
+            {
+                return null;
+            }
+            Stack<int> pathTo = new Stack<int>();
+            for (int x = vertex; x != source; x = edgeToVertex[x])
+            {
+                pathTo.Push(x);
+            }
+            pathTo.Push(source);
+            return pathTo;
         }
     }
 }
