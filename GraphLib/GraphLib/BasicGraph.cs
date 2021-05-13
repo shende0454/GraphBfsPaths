@@ -32,6 +32,7 @@ namespace GraphLib
             {
                 _adjacencyList.Add(new List<int>());
             }
+            NVertices++;
         }
         public void AddEdge(int firstVertex, int secondVertex)
         {
